@@ -86,15 +86,7 @@ rm .disks.plist
 # Phase 2: Disk Management
 echo -e "> ${bold}Phase 2${normal}: EFI Installation\n"
 echo -e "${bold}Retrieving...${normal}"
-curl -L -s -o "${target_dir}/EFI.zip" "https://egpu.io/wp-content/uploads/2018/10/EFI.zip"
-exp_integrity="75cea4616bc74d2fab8179251ec15f6e773dc4cc9f7f858d4cdb473db241797131e40a5bce1114f214ef4b98cc731d9e2e5600338189916cbac2dd40c277b869"
-file_integrity=$(shasum -a 512 -b "${target_dir}/EFI.zip" | awk '{ print $1 }')
-if [[ "${file_integrity}" != "${exp_integrity}" ]]
-then
-  echo -e "Download failed or invalid file.\n"
-  rm "${target_dir}/EFI.zip"
-  exit
-fi
+curl -L -s -o "${target_dir}/EFI.zip" "https://egpu.io/wp-content/uploads/wpforo/attachments/3/13138-EFI.zip"
 echo "Files retrieved."
 echo "${bold}Setting up disk...${normal}"
 unzip -d "${target_dir}" "${target_dir}/EFI.zip" 1>/dev/null 2>&1
